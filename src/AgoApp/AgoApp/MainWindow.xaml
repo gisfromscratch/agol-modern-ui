@@ -1,0 +1,11 @@
+﻿<metro:MetroWindow x:Class="AgoApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+		Title="MainWindow" 
+		Height="350" 
+		Width="525">
+    <Grid>
+    </Grid>
+</metro:MetroWindow>

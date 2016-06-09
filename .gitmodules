@@ -1,0 +1,3 @@
+[submodule "modules/ArcGISOnlineInteraction"]
+	path = modules/ArcGISOnlineInteraction
+	url = https://github.com/ECain/ArcGISOnlineInteraction.git

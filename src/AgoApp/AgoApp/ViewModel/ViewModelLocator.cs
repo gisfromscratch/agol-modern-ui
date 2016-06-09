@@ -14,6 +14,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.ServiceLocation;
 
 namespace AgoApp.ViewModel
@@ -43,6 +44,7 @@ namespace AgoApp.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<DialogViewModel>();
         }
 
         public MainViewModel Main
@@ -50,6 +52,14 @@ namespace AgoApp.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
+            }
+        }
+
+        public DialogViewModel Dialog
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<DialogViewModel>();
             }
         }
         

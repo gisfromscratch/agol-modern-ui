@@ -35,17 +35,24 @@ namespace AgoApp.Commands
 
         public async void Execute(object parameter)
         {
-            var loginData = await _dialogViewModel.Coordinator.ShowLoginAsync(_viewModel, @"Login into Portal", @"Enter your credentials:");
+            try
+            {
+                var loginData = await _dialogViewModel.Coordinator.ShowLoginAsync(_viewModel, @"Login into Portal", @"Enter your credentials:");
 
-            // Create the credential
-            var credential = await IdentityManager.Current.GenerateCredentialAsync(_viewModel.PortalConnection.Portal.Uri.AbsoluteUri, loginData.Username, loginData.Password);
+                // Create the credential
+                var credential = await IdentityManager.Current.GenerateCredentialAsync(_viewModel.PortalConnection.Portal.Uri.AbsoluteUri, loginData.Username, loginData.Password);
 
-            // Add the credential
-            IdentityManager.Current.AddCredential(credential);
+                // Add the credential
+                IdentityManager.Current.AddCredential(credential);
 
-            // Access the portal
-            var portal = await ArcGISPortal.CreateAsync();
-            _viewModel.PortalConnection = new PortalConnection(credential, portal);
+                // Access the portal
+                var portal = await ArcGISPortal.CreateAsync();
+                _viewModel.PortalConnection = new PortalConnection(credential, portal);
+            }
+            catch (Exception ex)
+            {
+                await _dialogViewModel.Coordinator.ShowMessageAsync(_viewModel, @"AGO App", ex.Message);
+            }
         }
     }
 }

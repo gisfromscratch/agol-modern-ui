@@ -4,6 +4,7 @@
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+        xmlns:views="clr-namespace:AgoApp.Views"
 		Title="AGO App" 
 		Height="350" 
 		Width="525"
@@ -27,7 +28,7 @@
     <!-- The tabs for navigation. -->
     <metro:MetroTabControl>
         <metro:MetroTabItem Header="Basemaps">
-            
+            <views:BasemapView></views:BasemapView>
         </metro:MetroTabItem>
     </metro:MetroTabControl>
 </metro:MetroWindow>

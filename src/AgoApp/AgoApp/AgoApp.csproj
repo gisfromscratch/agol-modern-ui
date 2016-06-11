@@ -84,6 +84,9 @@
     </ApplicationDefinition>
     <Compile Include="Commands\LogoutCommand.cs" />
     <Compile Include="Commands\ShowLoginCommand.cs" />
+    <Compile Include="Data\BasemapDataService.cs" />
+    <Compile Include="Data\IBasemapDataService.cs" />
+    <Compile Include="Data\IPortalConnectionDataService.cs" />
     <Compile Include="Model\PortalConnection.cs" />
     <Compile Include="ViewModel\DialogViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

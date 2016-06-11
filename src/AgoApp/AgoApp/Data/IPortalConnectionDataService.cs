@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-using AgoApp.ViewModel;
-using MahApps.Metro.Controls;
+using AgoApp.Model;
 
-namespace AgoApp
+namespace AgoApp.Data
 {
-    public partial class MainWindow : MetroWindow
+    /// <summary>
+    /// Offers access to the current portal connection.
+    /// </summary>
+    public interface IPortalConnectionDataService
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-
-            var viewModel = (MainViewModel)DataContext;
-            viewModel.MainWindow = this;
-        }
+        /// <summary>
+        /// Gets the current portal connection.
+        /// </summary>
+        /// <returns>The current portal connection.</returns>
+        PortalConnection GetPortalConnection();
     }
 }

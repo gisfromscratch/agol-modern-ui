@@ -21,10 +21,10 @@ using Esri.ArcGISRuntime.Portal;
 using GalaSoft.MvvmLight;
 using MahApps.Metro.Controls;
 using System.Windows.Input;
-using System;
 using Microsoft.Practices.ServiceLocation;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace AgoApp.ViewModel
 {
@@ -45,11 +45,15 @@ namespace AgoApp.ViewModel
         private MetroWindow _mainWindow;
         private PortalConnection _portalConnection;
 
+        private readonly ObservableCollection<ArcGISPortalItem> _basemapItems;
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
+            _basemapItems = new ObservableCollection<ArcGISPortalItem>();
+
             if (IsInDesignMode)
             {
                 // Code runs in Blend --> create design time data.
@@ -96,11 +100,15 @@ namespace AgoApp.ViewModel
             {
                 Set(ref _portalConnection, value);
 
-                // Query all the items and add those using the current thread
+                // Query all the items and set those using the current thread
                 var basemapDataService = ServiceLocator.Current.GetInstance<IBasemapDataService>();
                 basemapDataService.GetBasemaps().ContinueWith((queryTask) =>
                 {
-
+                    _basemapItems.Clear();
+                    foreach(var basemapItem in queryTask.Result)
+                    {
+                        _basemapItems.Add(basemapItem);
+                    }
                 }, CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
             }
         }
@@ -108,6 +116,11 @@ namespace AgoApp.ViewModel
         public PortalConnection GetPortalConnection()
         {
             return _portalConnection;
+        }
+
+        public ObservableCollection<ArcGISPortalItem> BasemapItems
+        {
+            get { return _basemapItems; }
         }
     }
 }

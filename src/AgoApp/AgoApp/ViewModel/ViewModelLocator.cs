@@ -56,7 +56,15 @@ namespace AgoApp.ViewModel
             else
             {
                 // Create run time view services and models
-                SimpleIoc.Default.Register<IPortalConnectionDataService, MainViewModel>();
+                // We have to use the factory type of registration
+                // otherwise a duplicated key exception would be thrown here!
+                // We are using the service locator to force a singleton
+                SimpleIoc.Default.Register<IMainViewModel>(() =>
+                    ServiceLocator.Current.GetInstance<MainViewModel>()
+                );
+                SimpleIoc.Default.Register<IPortalConnectionDataService>(() =>
+                    ServiceLocator.Current.GetInstance<MainViewModel>()
+                );
                 SimpleIoc.Default.Register<IBasemapDataService, BasemapDataService>();
             }
 

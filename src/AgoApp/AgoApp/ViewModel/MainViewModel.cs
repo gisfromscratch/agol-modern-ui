@@ -40,7 +40,7 @@ namespace AgoApp.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase, IPortalConnectionDataService
+    public class MainViewModel : ViewModelBase, IMainViewModel, IPortalConnectionDataService
     {
         private MetroWindow _mainWindow;
         private ICommand _loginCommand;

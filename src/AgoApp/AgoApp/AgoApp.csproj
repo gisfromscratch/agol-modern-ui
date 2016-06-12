@@ -89,6 +89,7 @@
     <Compile Include="Data\IPortalConnectionDataService.cs" />
     <Compile Include="Model\PortalConnection.cs" />
     <Compile Include="ViewModel\DialogViewModel.cs" />
+    <Compile Include="ViewModel\IMainViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\BasemapView.xaml.cs">

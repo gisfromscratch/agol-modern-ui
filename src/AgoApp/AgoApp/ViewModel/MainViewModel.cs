@@ -43,8 +43,6 @@ namespace AgoApp.ViewModel
     public class MainViewModel : ViewModelBase, IMainViewModel, IPortalConnectionDataService
     {
         private MetroWindow _mainWindow;
-        private ICommand _loginCommand;
-        private ICommand _logoutCommand;
         private PortalConnection _portalConnection;
 
         /// <summary>
@@ -79,7 +77,7 @@ namespace AgoApp.ViewModel
         {
             get
             {
-                return _loginCommand ?? (_loginCommand = new LoginCommand());
+                return ServiceLocator.Current.GetInstance<LoginCommand>();
             }
         }
 
@@ -87,7 +85,7 @@ namespace AgoApp.ViewModel
         {
             get
             {
-                return _logoutCommand ?? (_logoutCommand = new LogoutCommand());
+                return ServiceLocator.Current.GetInstance<LogoutCommand>();
             }
         }
 
@@ -98,10 +96,11 @@ namespace AgoApp.ViewModel
             {
                 Set(ref _portalConnection, value);
 
-                // Query all the items
+                // Query all the items and add those using the current thread
                 var basemapDataService = ServiceLocator.Current.GetInstance<IBasemapDataService>();
                 basemapDataService.GetBasemaps().ContinueWith((queryTask) =>
                 {
+
                 }, CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
             }
         }

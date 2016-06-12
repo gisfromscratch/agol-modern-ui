@@ -28,6 +28,7 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using AgoApp.Commands;
 using AgoApp.Data;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
@@ -72,6 +73,10 @@ namespace AgoApp.ViewModel
             // otherwise a duplicated key exception would be thrown here!
             SimpleIoc.Default.Register(() => new MainViewModel());
             SimpleIoc.Default.Register<DialogViewModel>();
+
+            // Registering the commands
+            SimpleIoc.Default.Register<LoginCommand>();
+            SimpleIoc.Default.Register<LogoutCommand>();
         }
 
         public MainViewModel Main

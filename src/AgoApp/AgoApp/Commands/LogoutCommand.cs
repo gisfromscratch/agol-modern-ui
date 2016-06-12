@@ -18,7 +18,6 @@ using AgoApp.ViewModel;
 
 using Esri.ArcGISRuntime.Portal;
 using Esri.ArcGISRuntime.Security;
-using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Windows.Input;
 
@@ -28,9 +27,9 @@ namespace AgoApp.Commands
     {
         private readonly MainViewModel _viewModel;
 
-        public LogoutCommand()
+        public LogoutCommand(MainViewModel viewModel)
         {
-            _viewModel = ServiceLocator.Current.GetInstance<MainViewModel>();
+            _viewModel = viewModel;
             _viewModel.PropertyChanged += (sender, e) =>
             {
                 CanExecuteChanged?.Invoke(sender, e);

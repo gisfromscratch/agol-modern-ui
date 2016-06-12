@@ -1,6 +1,4 @@
-﻿using AgoApp.Model;
-using AgoApp.ViewModel;
-/*
+﻿/*
  * Copyright 2016 Jan Tschada
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +14,8 @@ using AgoApp.ViewModel;
  * limitations under the License.
  */
 
+using AgoApp.Model;
+using AgoApp.ViewModel;
 using Esri.ArcGISRuntime.Portal;
 using Esri.ArcGISRuntime.Security;
 using System;

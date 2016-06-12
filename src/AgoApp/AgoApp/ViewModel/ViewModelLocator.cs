@@ -28,6 +28,8 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using AgoApp.Data;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 
@@ -46,18 +48,21 @@ namespace AgoApp.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
+            if (ViewModelBase.IsInDesignModeStatic)
+            {
+                // Create design time view services and models
+                //SimpleIoc.Default.Register<IDataService, DesignDataService>();
+            }
+            else
+            {
+                // Create run time view services and models
+                SimpleIoc.Default.Register<IPortalConnectionDataService, MainViewModel>();
+                SimpleIoc.Default.Register<IBasemapDataService, BasemapDataService>();
+            }
 
-            SimpleIoc.Default.Register<MainViewModel>();
+            // We have to use the factory type of registration
+            // otherwise a duplicated key exception would be thrown here!
+            SimpleIoc.Default.Register(() => new MainViewModel());
             SimpleIoc.Default.Register<DialogViewModel>();
         }
 

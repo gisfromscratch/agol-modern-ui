@@ -22,6 +22,9 @@ using GalaSoft.MvvmLight;
 using MahApps.Metro.Controls;
 using System.Windows.Input;
 using System;
+using Microsoft.Practices.ServiceLocation;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AgoApp.ViewModel
 {
@@ -40,7 +43,7 @@ namespace AgoApp.ViewModel
     public class MainViewModel : ViewModelBase, IPortalConnectionDataService
     {
         private MetroWindow _mainWindow;
-        private ICommand _showLoginCommand;
+        private ICommand _loginCommand;
         private ICommand _logoutCommand;
         private PortalConnection _portalConnection;
 
@@ -72,11 +75,11 @@ namespace AgoApp.ViewModel
             set { Set(ref _mainWindow, value); }
         }
 
-        public ICommand ShowLoginCommand
+        public ICommand LoginCommand
         {
             get
             {
-                return _showLoginCommand ?? (_showLoginCommand = new ShowLoginCommand());
+                return _loginCommand ?? (_loginCommand = new LoginCommand());
             }
         }
 
@@ -91,7 +94,16 @@ namespace AgoApp.ViewModel
         public PortalConnection PortalConnection
         {
             get { return _portalConnection; }
-            set { Set(ref _portalConnection, value); }
+            set
+            {
+                Set(ref _portalConnection, value);
+
+                // Query all the items
+                var basemapDataService = ServiceLocator.Current.GetInstance<IBasemapDataService>();
+                basemapDataService.GetBasemaps().ContinueWith((queryTask) =>
+                {
+                }, CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
+            }
         }
 
         public PortalConnection GetPortalConnection()

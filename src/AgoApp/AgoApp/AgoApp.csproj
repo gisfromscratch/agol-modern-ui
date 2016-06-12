@@ -83,7 +83,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\LogoutCommand.cs" />
-    <Compile Include="Commands\ShowLoginCommand.cs" />
+    <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Data\BasemapDataService.cs" />
     <Compile Include="Data\IBasemapDataService.cs" />
     <Compile Include="Data\IPortalConnectionDataService.cs" />

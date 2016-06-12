@@ -27,12 +27,12 @@ namespace AgoApp.Commands
     /// <summary>
     /// Represent a login command.
     /// </summary>
-    public class ShowLoginCommand : ICommand
+    public class LoginCommand : ICommand
     {
         private readonly MainViewModel _viewModel;
         private readonly DialogViewModel _dialogViewModel;
 
-        public ShowLoginCommand()
+        public LoginCommand()
         {
             _viewModel = ServiceLocator.Current.GetInstance<MainViewModel>();
             _viewModel.PropertyChanged += (sender, e) =>

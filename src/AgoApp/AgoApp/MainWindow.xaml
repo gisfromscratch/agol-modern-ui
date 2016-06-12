@@ -16,7 +16,7 @@
         <metro:WindowCommands>
             <Button Content="Login"
                     ToolTip="Login into Portal"
-                    Command="{Binding ShowLoginCommand}">
+                    Command="{Binding LoginCommand}">
             </Button>
             <Button Content="Logout"
                     ToolTip="Logout from Portal"
